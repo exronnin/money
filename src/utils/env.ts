@@ -23,9 +23,11 @@ export const loadEnv = async (filePath: string = '.env'): Promise<void> => {
             return void helpers.useSetEnvLoaded(true)
         }
 
+        const nodeOnly = ['node:fs', 'node:path']
+
         const [{ default: fs }, { default: path }] = await Promise.all([
-            import(/*! @vite-ignore */('node:fs')),
-            import(/*! @vite-ignore */('node:path')),
+            import(/*! @vite-ignore */String(nodeOnly[0])),
+            import(/*! @vite-ignore */String(nodeOnly[1])),
         ])
 
         const envPath = path.resolve(process.cwd(), filePath)
