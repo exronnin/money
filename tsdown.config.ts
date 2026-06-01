@@ -9,5 +9,8 @@ export default defineConfig({
     minify: true,
     treeshake: true,
     exports: true,
-    clean: true
+    clean: true,
+    outputOptions: {
+        legalComments: 'inline'
+    }
 }) 
