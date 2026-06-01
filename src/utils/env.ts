@@ -24,8 +24,8 @@ export const loadEnv = async (filePath: string = '.env'): Promise<void> => {
         }
 
         const [{ default: fs }, { default: path }] = await Promise.all([
-            import(/*! @vite-ignore */ 'node:fs'),
-            import(/*! @vite-ignore */ 'node:path'),
+            import(/*! @vite-ignore */('node:fs')),
+            import(/*! @vite-ignore */('node:path')),
         ])
 
         const envPath = path.resolve(process.cwd(), filePath)
@@ -45,7 +45,7 @@ export const loadEnv = async (filePath: string = '.env'): Promise<void> => {
             let value = match[2].trim()
 
             if ((value.startsWith('"') && value.endsWith('"')) ||
-                (value.startsWith("'") && value.endsWith("'"))) {
+                (value.startsWith('\'') && value.endsWith('\''))) {
                 value = value.slice(1, -1)
             }
 
